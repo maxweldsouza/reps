@@ -2,8 +2,9 @@
 # need to test
 # epi 16.2
 def is_valid(placement):
-    diagonals = len(set([x - i for i, x in enumerate(placement)])) == len(placement)
-    return len(placement) == len(set(placement)) and diagonals
+    diagonals1 = len(set([x - i for i, x in enumerate(placement)])) == len(placement)
+    diagonals2 = len(set([x - i for i, x in enumerate(reversed(placement))])) == len(placement)
+    return len(placement) == len(set(placement)) and diagonals1 and diagonals2
 
 def increment_last_queen(placement, last):
     while placement[-1] == last:

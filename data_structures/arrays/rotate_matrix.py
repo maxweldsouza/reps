@@ -1,4 +1,7 @@
 # done but need to test
+# wont handle rectangular matrices
+
+from itertools import izip
 
 def mid(mx):
     return (mx / 2) - 1 if mx % 2 == 0 else mx / 2
@@ -15,9 +18,15 @@ def rotate_matrix(mat, w):
     return mat
 
 test = [
-[1, 2, 3],
-[4, 5, 6],
-[7, 8, 9],
+[1, 2, 3, 4],
+[5, 6, 7, 8],
+[9, 10, 11, 12]
 ]
 
-print rotate_matrix(test, 3)
+#print rotate_matrix(test, 3)
+
+# much better method, handles rectanglular matrices
+def rotate_iter(mat):
+    return map(list, map(reversed, izip(*mat)))
+
+print rotate_iter(test)

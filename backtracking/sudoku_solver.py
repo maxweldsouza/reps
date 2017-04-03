@@ -1,25 +1,6 @@
 # test and works for simple sudoku
 # http://norvig.com/sudoku.html
 
-def next_move(mat, moves):
-    w = len(mat)
-    for i in range(w):
-        for j in range(w):
-            if not mat[i][j]:
-                moves.append((i, j, 1))
-                mat[i][j] = 1
-                return
-
-def increment_move(mat, moves):
-    while moves[-1][2] == 9:
-        if len(moves) == 0:
-            return False
-        i, j, val = moves.pop()
-        mat[i][j] = 0
-    i, j, val = moves.pop()
-    moves.append((i, j, val+1))
-    mat[i][j] = val + 1
-
 def done(mat):
     w = len(mat)
     return all([ mat[i][j] for i in range(w) for j in range(w) ])
@@ -45,6 +26,26 @@ def is_valid_move(mat, moves):
         return True
     i, j, value = moves[-1]
     return check_row(mat, i) and check_col(mat, j) and check_subarray(mat, i, j)
+
+def next_move(mat, moves):
+    w = len(mat)
+    for i in range(w):
+        for j in range(w):
+            if not mat[i][j]:
+                moves.append((i, j, 1))
+                mat[i][j] = 1
+                return
+
+def increment_move(mat, moves):
+    while moves[-1][2] == 9:
+        if len(moves) == 0:
+            return False
+        i, j, val = moves.pop()
+        mat[i][j] = 0
+    i, j, val = moves.pop()
+    moves.append((i, j, val+1))
+    mat[i][j] = val + 1
+    return True
 
 def solver(mat):
     moves = [] # every move is a tuple (i, j, value)

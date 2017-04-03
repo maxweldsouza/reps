@@ -12,6 +12,8 @@ def next_move(mat, moves):
 
 def increment_move(mat, moves):
     while moves[-1][2] == 9:
+        if len(moves) == 0:
+            return False
         i, j, val = moves.pop()
         mat[i][j] = 0
     i, j, val = moves.pop()
@@ -51,12 +53,24 @@ def solver(mat):
             return mat
         if is_valid_move(mat, moves):
             next_move(mat, moves)
+        elif increment_move(mat, moves):
+            continue
         else:
-            increment_move(mat, moves)
+            return False # unsolvable
     return mat
 
 def string_to_mat(s):
     return [ [int(c) for c in line] for line in s.splitlines() ]
+
+impossible = """000005080
+000601043
+000000000
+010500000
+000106000
+300000005
+530000061
+000000004
+000000000"""
 
 test = """003020600
 900305001
@@ -68,4 +82,4 @@ test = """003020600
 800203009
 005010300"""
 
-print solver(string_to_mat(test))
+print solver(string_to_mat(impossible))

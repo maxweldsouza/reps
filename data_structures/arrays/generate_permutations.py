@@ -1,3 +1,8 @@
+
+# epi 6.11
+# http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
+
+# duplicates are not allowed
 def permutations(arr):
     while True:
         arr = arr[:]

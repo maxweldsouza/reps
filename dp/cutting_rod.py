@@ -1,3 +1,5 @@
+# done
+# http://www.geeksforgeeks.org/dynamic-programming-set-13-cutting-a-rod/
 cache = {}
 
 def cutting_rod(lengths, prices, n):
